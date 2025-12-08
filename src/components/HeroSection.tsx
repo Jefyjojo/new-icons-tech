@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Laptop, Car, Clock, MapPin, Shield, Zap } from "lucide-react";
+import { Laptop, Car, Clock, MapPin, Shield, Zap, Cpu, CircuitBoard } from "lucide-react";
+import heroTechLeft from "@/assets/hero-tech-left.png";
+import heroTechRight from "@/assets/hero-tech-right.png";
 
 const highlights = [
   { icon: Laptop, text: "Laptop Repair Experts" },
@@ -20,35 +22,124 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-hero-gradient"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-secondary blur-[100px]" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-primary-foreground blur-[120px]" />
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 cyber-grid opacity-30" />
+
+      {/* Animated Circuit Lines */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <svg className="absolute w-full h-full opacity-20" viewBox="0 0 1440 900">
+          <motion.path
+            d="M0 300 Q 200 250, 400 300 T 800 280 T 1200 320 T 1440 300"
+            stroke="url(#cyan-gradient)"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+          />
+          <motion.path
+            d="M0 500 Q 300 450, 600 500 T 1000 480 T 1440 520"
+            stroke="url(#orange-gradient)"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
+          />
+          <defs>
+            <linearGradient id="cyan-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(200 100% 50%)" stopOpacity="0" />
+              <stop offset="50%" stopColor="hsl(200 100% 50%)" stopOpacity="1" />
+              <stop offset="100%" stopColor="hsl(200 100% 50%)" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="orange-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(25 100% 55%)" stopOpacity="0" />
+              <stop offset="50%" stopColor="hsl(25 100% 55%)" stopOpacity="1" />
+              <stop offset="100%" stopColor="hsl(25 100% 55%)" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
-      {/* Grid Pattern Overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--primary-foreground)) 1px, transparent 1px)`,
-          backgroundSize: "50px 50px",
-        }}
-      />
+      {/* Glowing Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 left-10 w-64 h-64 rounded-full bg-primary/20 blur-[100px]"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-10 w-96 h-96 rounded-full bg-secondary/20 blur-[120px]"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.4, 0.6, 0.4],
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/10 blur-[150px]"
+          animate={{
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      {/* Left Tech Image */}
+      <motion.div
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute left-0 top-1/2 -translate-y-1/2 hidden lg:block"
+      >
+        <div className="relative">
+          <img
+            src={heroTechLeft}
+            alt="Laptop motherboard technology"
+            className="w-80 h-auto opacity-60 mask-gradient-right"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background" />
+          {/* Neon border effect */}
+          <div className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-transparent via-primary to-transparent opacity-50" />
+        </div>
+      </motion.div>
+
+      {/* Right Tech Image */}
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block"
+      >
+        <div className="relative">
+          <img
+            src={heroTechRight}
+            alt="Vehicle ECM dashboard technology"
+            className="w-80 h-auto opacity-60 mask-gradient-left"
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background" />
+          {/* Neon border effect */}
+          <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-transparent via-secondary to-transparent opacity-50" />
+        </div>
+      </motion.div>
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
+          {/* Cyber Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 backdrop-blur-sm mb-8"
+            className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-primary/50 backdrop-blur-md mb-8 bg-primary/10 pulse-glow"
           >
-            <Shield className="w-4 h-4 text-secondary" />
-            <span className="text-sm font-medium text-primary-foreground">
+            <CircuitBoard className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary tracking-wider uppercase">
               10+ Years of Trusted Service
             </span>
+            <CircuitBoard className="w-4 h-4 text-primary" />
           </motion.div>
 
           {/* Headline */}
@@ -56,10 +147,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary-foreground leading-tight mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6"
           >
-            Reliable Hardware Engineering &{" "}
-            <span className="text-secondary">Laptop Repair Services</span>
+            <span className="block">Reliable Hardware Engineering &</span>
+            <span className="text-gradient-cyber">Laptop Repair Services</span>
           </motion.h1>
 
           {/* Sub-headline */}
@@ -67,7 +158,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-medium"
           >
             Your trusted destination for laptop repairs, ECM services for all
             vehicles, hardware maintenance, upgrades, and data recovery.
@@ -84,13 +175,19 @@ const HeroSection = () => {
               size="lg"
               variant="hero"
               onClick={() => scrollToSection("#services")}
+              className="relative overflow-hidden group"
             >
-              View Services
+              <span className="relative z-10 flex items-center gap-2">
+                <Cpu className="w-5 h-5" />
+                View Services
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-circuit-flow opacity-0 group-hover:opacity-100 transition-opacity" />
             </Button>
             <Button
               size="lg"
               variant="heroOutline"
               onClick={() => scrollToSection("#contact")}
+              className="border-primary/50 hover:border-primary hover:shadow-neon-cyan transition-all duration-300"
             >
               Contact Us
             </Button>
@@ -109,10 +206,13 @@ const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="flex flex-col items-center gap-2 p-4 rounded-xl bg-primary-foreground/5 border border-primary-foreground/10 backdrop-blur-sm"
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="group flex flex-col items-center gap-3 p-5 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm hover:border-primary/50 hover:bg-card/80 transition-all duration-300"
               >
-                <item.icon className="w-6 h-6 text-secondary" />
-                <span className="text-sm font-medium text-primary-foreground text-center">
+                <div className="p-3 rounded-lg bg-primary/10 border border-primary/30 group-hover:shadow-neon-cyan transition-all duration-300">
+                  <item.icon className="w-6 h-6 text-primary" />
+                </div>
+                <span className="text-sm font-semibold text-foreground text-center tracking-wide">
                   {item.text}
                 </span>
               </motion.div>
@@ -121,19 +221,25 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Bottom Wave */}
+      {/* Bottom Glow Line */}
       <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          viewBox="0 0 1440 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full"
-        >
-          <path
-            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="hsl(var(--background))"
-          />
-        </svg>
+        <div className="glow-line w-full" />
+        <div className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      </div>
+
+      {/* Scanline Effect */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.div
+          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+          animate={{
+            top: ["-2%", "102%"],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
       </div>
     </section>
   );
