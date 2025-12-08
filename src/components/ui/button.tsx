@@ -5,18 +5,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-bold tracking-wider uppercase ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-card hover:shadow-elevated",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-neon-cyan hover:shadow-[0_0_40px_hsl(200_100%_50%/0.6)]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-card hover:shadow-elevated",
+        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-neon-cyan",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-neon-orange hover:shadow-[0_0_40px_hsl(25_100%_55%/0.6)]",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-glow hover:scale-105 font-bold",
-        heroOutline: "border-2 border-secondary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 backdrop-blur-sm",
+        hero: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-neon-cyan hover:shadow-[0_0_50px_hsl(200_100%_50%/0.7)] hover:scale-105",
+        heroOutline: "border-2 border-primary/50 bg-card/50 text-foreground hover:bg-primary/20 hover:border-primary backdrop-blur-sm",
       },
       size: {
         default: "h-11 px-6 py-2",

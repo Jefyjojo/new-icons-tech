@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Space Grotesk", "sans-serif"],
-        body: ["Plus Jakarta Sans", "sans-serif"],
+        heading: ["Orbitron", "sans-serif"],
+        body: ["Rajdhani", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,6 +51,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        neon: {
+          cyan: "hsl(var(--neon-cyan))",
+          orange: "hsl(var(--neon-orange))",
+          purple: "hsl(var(--neon-purple))",
+          green: "hsl(var(--neon-green))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -81,25 +87,44 @@ export default {
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "slide-in-left": {
-          from: { opacity: "0", transform: "translateX(-30px)" },
+          from: { opacity: "0", transform: "translateX(-50px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
         "slide-in-right": {
-          from: { opacity: "0", transform: "translateX(30px)" },
+          from: { opacity: "0", transform: "translateX(50px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
         pulse: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.7" },
         },
+        "glow-pulse": {
+          "0%, 100%": { 
+            boxShadow: "0 0 20px hsl(var(--primary) / 0.5)",
+          },
+          "50%": { 
+            boxShadow: "0 0 40px hsl(var(--primary) / 0.8), 0 0 60px hsl(var(--primary) / 0.4)",
+          },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "circuit-flow": {
+          "0%": { backgroundPosition: "0% 0%" },
+          "100%": { backgroundPosition: "100% 100%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out forwards",
-        "slide-in-left": "slide-in-left 0.5s ease-out forwards",
-        "slide-in-right": "slide-in-right 0.5s ease-out forwards",
-        pulse: "pulse 2s ease-in-out infinite",
+        "slide-in-left": "slide-in-left 0.8s ease-out forwards",
+        "slide-in-right": "slide-in-right 0.8s ease-out forwards",
+        "pulse": "pulse 2s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "circuit-flow": "circuit-flow 20s linear infinite",
       },
     },
   },

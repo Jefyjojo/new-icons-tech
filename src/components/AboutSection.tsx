@@ -10,6 +10,7 @@ import {
   Car,
   MapPin,
   DollarSign,
+  Cpu,
 } from "lucide-react";
 
 const trustPoints = [
@@ -27,8 +28,12 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-20 md:py-28 bg-background relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 cyber-grid opacity-10" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Content */}
           <motion.div
@@ -37,11 +42,12 @@ const AboutSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-6">
+              <Cpu className="w-4 h-4" />
               About Us
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
-              About <span className="text-secondary">NEW ICONS</span>
+              About <span className="text-gradient-cyber">NEW ICONS</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               NEW ICONS is a professional hardware engineering service provider
@@ -55,30 +61,26 @@ const AboutSection = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mt-10">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-heading font-bold text-primary">
-                  10+
-                </div>
-                <div className="text-sm text-muted-foreground mt-1">
-                  Years Experience
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-heading font-bold text-secondary">
-                  2
-                </div>
-                <div className="text-sm text-muted-foreground mt-1">
-                  Service Centers
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-heading font-bold text-primary">
-                  5000+
-                </div>
-                <div className="text-sm text-muted-foreground mt-1">
-                  Happy Clients
-                </div>
-              </div>
+              {[
+                { value: "10+", label: "Years Experience", color: "primary" },
+                { value: "2", label: "Service Centers", color: "secondary" },
+                { value: "5000+", label: "Happy Clients", color: "accent" },
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  className="text-center p-4 rounded-lg border border-border bg-card/50"
+                >
+                  <div className={`text-3xl md:text-4xl font-heading font-bold text-${stat.color}`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground mt-1">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
@@ -87,22 +89,28 @@ const AboutSection = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-card rounded-2xl p-8 shadow-card border border-border"
+            className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 relative overflow-hidden"
           >
-            <h3 className="text-xl font-heading font-bold text-foreground mb-6 flex items-center gap-2">
-              <Wrench className="w-5 h-5 text-secondary" />
+            {/* Corner accents */}
+            <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-primary/50 rounded-tl-2xl" />
+            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-secondary/50 rounded-br-2xl" />
+            
+            <h3 className="text-xl font-heading font-bold text-foreground mb-6 flex items-center gap-2 tracking-wider">
+              <div className="p-2 rounded-lg bg-secondary/20 border border-secondary/30">
+                <Wrench className="w-5 h-5 text-secondary" />
+              </div>
               Why Customers Trust Us
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {trustPoints.map((point, index) => (
                 <motion.div
                   key={point.text}
                   initial={{ opacity: 0, y: 10 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="flex items-center gap-4 p-3 rounded-xl hover:bg-accent transition-colors"
+                  className="flex items-center gap-4 p-3 rounded-lg border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 group"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:shadow-neon-cyan transition-all duration-300">
                     <point.icon className="w-5 h-5 text-primary" />
                   </div>
                   <span className="text-foreground font-medium">
